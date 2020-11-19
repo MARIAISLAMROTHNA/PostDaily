@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "106016011690",
+    "firebase_url": "https://postdaily-5c02e.firebaseio.com",
+    "project_id": "postdaily-5c02e",
+    "storage_bucket": "postdaily-5c02e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106016011690:android:a8b1940e995a1efa4027d3",
+        "android_client_info": {
+          "package_name": "com.example.postdaily"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106016011690-ikp92rs2e48aarjqan0ltd5c4261859j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYnbB5UCSncGKrrHmEUBz00etK0HN-UAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106016011690-ikp92rs2e48aarjqan0ltd5c4261859j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
