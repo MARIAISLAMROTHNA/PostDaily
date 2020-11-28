@@ -15,15 +15,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <!--<ImageView
-                android:id="@+id/login_image"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:src="@drawable/loginlogo"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:scaleType="fitCenter"/>-->
 
             <TextView
                 android:id="@+id/login_name_textview"
@@ -35,7 +26,6 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-
                 android:text="Login"
                 android:textSize="80sp"
                 android:textAlignment="center"
@@ -53,9 +43,12 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/login_name_textview"
                 android:hint="Email..."
+                android:background="@drawable/inputs"
                 android:inputType="textEmailAddress"
                 android:padding="4dp"
+                android:drawableStart="@drawable/email"
                 android:layout_alignParentLeft="true"
+                android:drawableLeft="@drawable/email"
                 android:layout_marginTop="45dp"
                 android:layout_marginRight="17dp"
                 android:layout_marginLeft="17dp"
@@ -70,8 +63,11 @@
                 android:layout_below="@+id/login_email"
                 android:hint="Password..."
                 android:inputType="textPassword"
+                android:background="@drawable/inputs"
                 android:padding="4dp"
+                android:drawableStart="@drawable/password"
                 android:layout_alignParentLeft="true"
+                android:drawableLeft="@drawable/password"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="17dp"
                 android:layout_marginLeft="17dp"
