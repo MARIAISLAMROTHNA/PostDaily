@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewPostActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/new_post_toolbar"
+        android:layout_width="408dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="604dp"
+        android:background="#EE814B76"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/new_post_image"
+        android:layout_width="407dp"
+        android:layout_height="187dp"
+        android:layout_marginTop="84dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_post_toolbar" />
+
+    <EditText
+        android:id="@+id/addDescriptionEt"
+        android:layout_width="411dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:hint="@string/post_des_hint"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_post_image"
+        app:layout_constraintVertical_bias="0.093" />
+
+    <Button
+        android:id="@+id/post_btn"
+        android:layout_width="206dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:background="#EE814B76"
+        android:padding="16dp"
+        android:text="@string/new_post_btn_hint"
+        android:textColor="#F4F4F4"
+        android:textColorHint="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addDescription"
+        app:layout_constraintVertical_bias="0.193" />
+
+    <EditText
+        android:id="@+id/titlET"
+        android:layout_width="124dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="Add Title"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.104" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,7 +50,6 @@ public class UserProfileActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +59,7 @@ public class UserProfileActivity extends AppCompatActivity {
         currentUserID=mAuth.getCurrentUser().getUid();
         RootRef= FirebaseDatabase.getInstance().getReference();
         UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
+
         InitializeFields();
 
         userName.setVisibility(View.INVISIBLE);
@@ -180,7 +180,7 @@ public class UserProfileActivity extends AppCompatActivity {
         }
         else
         {
-            HashMap<String,Object> profileMap=new HashMap<>();
+            HashMap<String,Object>profileMap=new HashMap<>();
             profileMap.put("uid",currentUserID);
             profileMap.put("name",setUserName);
             profileMap.put("status",setStatus);

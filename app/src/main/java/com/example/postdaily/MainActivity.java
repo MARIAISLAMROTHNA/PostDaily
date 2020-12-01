@@ -2,17 +2,15 @@ package com.example.postdaily;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private RecyclerView postList;
     private Toolbar mToolbar;
+    private Button addPostBtn;
 
 
 
@@ -88,10 +87,12 @@ public class MainActivity extends AppCompatActivity {
            Toast.makeText(MainActivity.this,"HomeChecked",Toast.LENGTH_LONG).show();
            break;
        case R.id.nav_profile:
-           Toast.makeText(MainActivity.this,"profileChecked",Toast.LENGTH_LONG).show();
+           Intent newPostIntent=new Intent(MainActivity.this, UserProfileActivity.class);
+           startActivity(newPostIntent);
            break;
        case R.id.nav_post:
-           Toast.makeText(MainActivity.this,"Add A Post Checked",Toast.LENGTH_LONG).show();
+           Intent profileIntent=new Intent(MainActivity.this, NewPostActivity.class);
+           startActivity(profileIntent);
            break;
        case R.id.nav_friends:
            Toast.makeText(MainActivity.this,"FriendsChecked",Toast.LENGTH_LONG).show();
@@ -100,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
            Toast.makeText(MainActivity.this,"Find Friends",Toast.LENGTH_LONG).show();
            break;
        case R.id.nav_logout:
-           Toast.makeText(MainActivity.this,"Logout",Toast.LENGTH_LONG).show();
+           mAuth.signOut();
+           SendUserToLoginActivity();
            break;
 
 

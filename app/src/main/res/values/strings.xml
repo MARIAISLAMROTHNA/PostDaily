@@ -2,4 +2,6 @@
     <string name="app_name">PostDaily</string>
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
+    <string name="post_des_hint">Add a description</string>
+    <string name="new_post_btn_hint">Post</string>
 </resources>
