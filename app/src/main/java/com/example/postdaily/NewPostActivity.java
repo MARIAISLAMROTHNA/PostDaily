@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -45,7 +47,8 @@ import java.util.HashMap;
 
 public class NewPostActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
-    DatabaseReference userDbRef;
+    DatabaseReference userDbRef,RootRef;
+    StorageReference UserProfileImageRef;
 
     private Toolbar newpostToolbar;
     private EditText title,description;
@@ -84,28 +87,33 @@ public class NewPostActivity extends AppCompatActivity {
         pd=new ProgressDialog(this);
 
         firebaseAuth=FirebaseAuth.getInstance();
+        RootRef= FirebaseDatabase.getInstance().getReference();
         checkUserStatus();
+        RetrieveUserInfo();
 
 
 
-        userDbRef = FirebaseDatabase.getInstance().getReference("Users");
-        Query query=userDbRef.orderByChild("email").equalTo(email);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds:snapshot.getChildren()){
-                    name=""+ ds.child("name").getValue();
-                    email=""+ ds.child("email").getValue();
-                    dp=""+ ds.child("image").getValue();
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+//        userDbRef = FirebaseDatabase.getInstance().getReference("Users");
+//        UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
+//       Query query=userDbRef.child("uid").equalTo(uid);
+//        query.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot ds:snapshot.getChildren()){
+//
+//                    name=""+ ds.child("name").getValue().toString();
+//                  //  email=""+ ds.child("email").getValue().toString();
+//                    dp=""+ ds.child("image").getValue().toString();
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         title=findViewById(R.id.titlET);
         description=findViewById(R.id.addDescriptionEt);
@@ -167,6 +175,7 @@ public class NewPostActivity extends AppCompatActivity {
                                 HashMap<Object,String> hashMap=new HashMap<>();
                                 hashMap.put("uid",uid);
                                 hashMap.put("name",name);
+                                hashMap.put("image",dp);
                                 hashMap.put("email",email);
                                 hashMap.put("pId",timeStamp);
                                 hashMap.put("pTittle",titles);
@@ -181,6 +190,10 @@ public class NewPostActivity extends AppCompatActivity {
                                             public void onSuccess(Void aVoid) {
                                                 pd.dismiss();
                                                 Toast.makeText(NewPostActivity.this,"Post Published", Toast.LENGTH_SHORT).show();
+                                                title.setText("" );
+                                                description.setText("" );
+                                                imageView.setImageURI(null);
+                                                image_rui=null;
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
@@ -208,7 +221,7 @@ public class NewPostActivity extends AppCompatActivity {
             HashMap<Object,String> hashMap=new HashMap<>();
             hashMap.put("uid",uid);
             hashMap.put("name",name);
-            hashMap.put("",name);
+            hashMap.put("image",dp);
             hashMap.put("email",email);
             hashMap.put("pId",timeStamp);
             hashMap.put("pTittle",titles);
@@ -282,7 +295,7 @@ public class NewPostActivity extends AppCompatActivity {
 
     private void pickFromGallery() {
         Intent intent=new Intent(Intent.ACTION_PICK);
-        intent.setType("imge/*");
+        intent.setType("image/*");
         startActivityForResult(intent,IMAGE_PICK_GALLERY_CODE);
     }
 
@@ -387,11 +400,41 @@ public class NewPostActivity extends AppCompatActivity {
         {
             email=user.getEmail();
             uid=user.getUid();
+
         }
         else{
            startActivity(new Intent(this,MainActivity.class));
            finish();
         }
+    }
+    private void RetrieveUserInfo() {
+        RootRef.child("Users").child(uid)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if((dataSnapshot.exists()) && (dataSnapshot.hasChild("name")) && (dataSnapshot.hasChild("image"))){
+                            String retrieveProfileImage=dataSnapshot.child("image").getValue().toString();
+                            String retrieveUserName=dataSnapshot.child("name").getValue().toString();
+                            name=retrieveUserName;
+                            dp=retrieveProfileImage;
+
+                        }
+                        else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name")))
+                    {
+                            String retrieveUserName=dataSnapshot.child("name").getValue().toString();
+
+
+                           name=retrieveUserName;
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
     }
 
 }

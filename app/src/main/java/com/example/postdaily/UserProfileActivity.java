@@ -62,7 +62,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         InitializeFields();
 
-        userName.setVisibility(View.INVISIBLE);
+        userName.setVisibility(View.VISIBLE);
 
         UpdateAccountSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +137,7 @@ public class UserProfileActivity extends AppCompatActivity {
                             filePath.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Uri> task) {
+
                                     final String downloadUrl = task.getResult().toString();
 
                                     RootRef.child("Users").child(currentUserID).child("image")
@@ -184,6 +185,7 @@ public class UserProfileActivity extends AppCompatActivity {
             profileMap.put("uid",currentUserID);
             profileMap.put("name",setUserName);
             profileMap.put("status",setStatus);
+
 
             RootRef.child("Users").child(currentUserID).updateChildren(profileMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {

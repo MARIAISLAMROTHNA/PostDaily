@@ -22,9 +22,10 @@
         android:id="@+id/new_post_image"
         android:layout_width="407dp"
         android:layout_height="187dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="52dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/header"
+        android:src="@drawable/add_image"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +50,7 @@
         android:layout_width="206dp"
         android:layout_height="54dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="140dp"
         android:background="#EE814B76"
         android:padding="16dp"
         android:text="@string/new_post_btn_hint"
@@ -57,13 +59,14 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addDescription"
+        app:layout_constraintTop_toBottomOf="@+id/addDescriptionEt"
         app:layout_constraintVertical_bias="0.193" />
 
     <EditText
         android:id="@+id/titlET"
+        android:visibility="invisible"
         android:layout_width="124dp"
         android:layout_height="45dp"
         android:ems="10"
