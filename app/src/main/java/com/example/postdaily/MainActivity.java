@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         mAuth = FirebaseAuth.getInstance();
         uid=mAuth.getCurrentUser().getUid();
@@ -136,11 +141,17 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(@NonNull PostsViewHolder holder, int position, @NonNull Posts model) {
 
+                        String pTimestamp=model.getpTime();
+                        Calendar calendar=Calendar.getInstance(Locale.getDefault());
+                        calendar.setTimeInMillis(Long.parseLong(pTimestamp));
+                        String pTime= DateFormat.format("dd/MM/yyyy hh:mm aa",calendar).toString();
+
                         holder.name.setText(model.getName());
-                        holder.postTime.setText(model.getpTime());
+                        holder.postTime.setText(pTime);
                         holder.postDescr.setText(model.getpDescr());
                         Picasso.get().load(model.getpImage()).into(holder.postImg);
                         Picasso.get().load(model.getimage()).placeholder(R.drawable.profile_image).into(holder.profImg);
+
                     }
 
                     @NonNull
@@ -170,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
             postDescr=itemView.findViewById(R.id.post_description);
             postImg=itemView.findViewById(R.id.post_image);
             postTime=itemView.findViewById(R.id.post_time);
-            postDate=itemView.findViewById(R.id.post_date);
+            //postDate=itemView.findViewById(R.id.post_date);
             profImg=itemView.findViewById(R.id.Post_Profile_image);
 
 
@@ -243,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child("name").exists()){
-                    // Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+
                 }
                 else{
                     SendUserToUserProfileActivity();

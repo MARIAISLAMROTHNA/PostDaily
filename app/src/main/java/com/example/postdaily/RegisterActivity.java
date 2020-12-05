@@ -121,6 +121,16 @@ public class RegisterActivity extends AppCompatActivity {
                     });
         }
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            SendUserToMainActivity();
+        }
+
+    }
 
     private void SendUserToMainActivity() {
         Intent mainIntent =new Intent(RegisterActivity.this,MainActivity.class);

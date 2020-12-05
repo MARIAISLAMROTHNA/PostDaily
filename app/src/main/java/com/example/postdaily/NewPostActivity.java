@@ -132,10 +132,10 @@ public class NewPostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String titles=title.getText().toString().trim();
                 String descriptions=description.getText().toString().trim();
-                if(TextUtils.isEmpty(titles)){
-                    Toast.makeText(NewPostActivity.this,"Enter title",Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if(TextUtils.isEmpty(titles)){
+//                    Toast.makeText(NewPostActivity.this,"Enter title",Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
                 if (TextUtils.isEmpty(descriptions))
                 {
                     Toast.makeText(NewPostActivity.this,"Enter description",Toast.LENGTH_SHORT).show();
