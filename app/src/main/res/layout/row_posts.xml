@@ -6,6 +6,8 @@
     app:cardMaxElevation="3dp"
     app:cardCornerRadius="3dp"
     app:cardUseCompatPadding="true"
+    android:backgroundTintMode="src_atop"
+    android:backgroundTint="#88FFFFFF"
     app:cardBackgroundColor="@android:color/white">
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +45,7 @@
                     android:text="user name"
                     android:textAlignment="textStart"
                     android:textAllCaps="false"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/textColor"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -58,9 +60,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="has been updated a post on "
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="@color/textColor"
                         android:textSize="13sp"
-                        android:textStyle="bold"
+                        android:textStyle="normal"
                         android:layout_marginRight="1dp"/>
 
                     <TextView
@@ -68,7 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Time"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/textColor"
                         android:textSize="13sp" />
 
                 </LinearLayout>
@@ -83,8 +85,8 @@
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
             android:padding="3dp"
-            android:textSize="14sp"
-            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textColor="@color/textColor"
             />
 
         <ImageView

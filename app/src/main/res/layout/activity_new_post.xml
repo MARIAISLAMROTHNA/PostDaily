@@ -6,17 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".NewPostActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <include
+        layout="@layout/app_bar_layout"
         android:id="@+id/new_post_toolbar"
-        android:layout_width="408dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="604dp"
-        android:background="#EE814B76"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        >
+    </include>
 
     <ImageView
         android:id="@+id/new_post_image"

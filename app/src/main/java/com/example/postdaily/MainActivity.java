@@ -216,15 +216,22 @@ public class MainActivity extends AppCompatActivity {
            Toast.makeText(MainActivity.this,"FriendsChecked",Toast.LENGTH_LONG).show();
            break;
        case R.id.nav_find_friendst:
-           Toast.makeText(MainActivity.this,"Find Friends",Toast.LENGTH_LONG).show();
+           Toast.makeText(MainActivity.this,"FindFriendsChecked",Toast.LENGTH_LONG).show();
            break;
-       case R.id.nav_logout:
-           mAuth.signOut();
-           SendUserToLoginActivity();
+
+       case R.id.nav_theme:
+           SendUserToDarkModeActivity();
            break;
+
+
 
 
    }
+    }
+
+    private void SendUserToDarkModeActivity() {
+        Intent darkmodeIntent = new Intent(MainActivity.this, DarkModeActivity.class);
+        startActivity(darkmodeIntent);
     }
 
     @Override
