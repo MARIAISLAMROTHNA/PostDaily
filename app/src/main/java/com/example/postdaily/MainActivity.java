@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
            Toast.makeText(MainActivity.this,"FriendsChecked",Toast.LENGTH_LONG).show();
            break;
        case R.id.nav_find_friendst:
-           Toast.makeText(MainActivity.this,"FindFriendsChecked",Toast.LENGTH_LONG).show();
+          SendUserToFindFriendsActivity();
            break;
 
        case R.id.nav_theme:
@@ -234,6 +234,10 @@ public class MainActivity extends AppCompatActivity {
 
 
    }
+    }
+    private void SendUserToFindFriendsActivity() {
+        Intent findfriendsIntent = new Intent(MainActivity.this, FindFriendsActivity.class);
+        startActivity(findfriendsIntent);
     }
 
     private void SendUserToDarkModeActivity() {

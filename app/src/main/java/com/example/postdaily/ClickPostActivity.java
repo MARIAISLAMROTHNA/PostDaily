@@ -7,10 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,13 +26,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Locale;
+
 public class ClickPostActivity extends AppCompatActivity {
 private ImageView PostImg;
 private TextView PostDes;
 private Button EditPostButton,DeletePostButton;
+private ImageButton ListenPostButton;
 private String PostKey,CurrentUserid,databaseUserid,description,image;
 private FirebaseAuth mAuth;
 private DatabaseReference ClickPostRef;
+TextToSpeech textToSpeech;
 
 
     @Override
@@ -47,10 +54,20 @@ private DatabaseReference ClickPostRef;
         PostImg=(ImageView)findViewById(R.id.click_post_image);
         PostDes=(TextView)findViewById(R.id.click_post_description);
         EditPostButton=(Button)findViewById(R.id.edit_post_button);
+        ListenPostButton=(ImageButton)findViewById(R.id.listen_post_button);
+
         DeletePostButton=(Button)findViewById(R.id.delete_post_button);
 
         DeletePostButton.setVisibility(View.INVISIBLE);
         EditPostButton.setVisibility(View.INVISIBLE);
+        textToSpeech=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status!=textToSpeech.ERROR){
+                    textToSpeech.setLanguage(Locale.UK);
+                }
+            }
+        });
 
         ClickPostRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -88,7 +105,22 @@ private DatabaseReference ClickPostRef;
                 DeleteCurrentPost();
             }
         });
+        ListenPostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textToSpeech.speak(description, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
 
+
+    }
+    @Override
+    protected void onDestroy() {
+        if(textToSpeech!=null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        super.onDestroy();
     }
 
     private void EditCurrentPost(String description) {
@@ -128,4 +160,5 @@ private DatabaseReference ClickPostRef;
         startActivity(mainIntent);
         finish();
     }
+
 }

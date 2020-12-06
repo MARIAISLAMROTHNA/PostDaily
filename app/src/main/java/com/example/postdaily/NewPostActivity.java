@@ -90,29 +90,6 @@ public class NewPostActivity extends AppCompatActivity {
         RetrieveUserInfo();
 
 
-
-
-//        userDbRef = FirebaseDatabase.getInstance().getReference("Users");
-//        UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
-//       Query query=userDbRef.child("uid").equalTo(uid);
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot ds:snapshot.getChildren()){
-//
-//                    name=""+ ds.child("name").getValue().toString();
-//                  //  email=""+ ds.child("email").getValue().toString();
-//                    dp=""+ ds.child("image").getValue().toString();
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
         title=findViewById(R.id.titlET);
         description=findViewById(R.id.addDescriptionEt);
         imageView=findViewById(R.id.new_post_image);

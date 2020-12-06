@@ -14,14 +14,14 @@
 
     <ImageView
         android:id="@+id/new_post_image"
-        android:layout_width="400dp"
-        android:layout_height="213dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="354dp"
+        android:layout_height="244dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="fitXY"
 
         android:src="@drawable/select_image"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_post_toolbar" />
 
