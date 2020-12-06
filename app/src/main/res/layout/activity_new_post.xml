@@ -14,11 +14,11 @@
 
     <ImageView
         android:id="@+id/new_post_image"
-        android:layout_width="407dp"
-        android:layout_height="187dp"
+        android:layout_width="400dp"
+        android:layout_height="213dp"
         android:layout_marginTop="52dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/add_image"
+
+        android:src="@drawable/select_image"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -45,7 +45,7 @@
         android:layout_height="54dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="140dp"
-        android:background="#EE814B76"
+        android:background="@drawable/button"
         android:padding="16dp"
         android:text="@string/new_post_btn_hint"
         android:textColor="#F4F4F4"
@@ -56,7 +56,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addDescriptionEt"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintVertical_bias="0.246" />
 
     <EditText
         android:id="@+id/titlET"

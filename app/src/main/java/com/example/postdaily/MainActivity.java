@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(@NonNull PostsViewHolder holder, int position, @NonNull Posts model) {
 
+                        final String PostKey=getRef(position).getKey();
                         String pTimestamp=model.getpTime();
                         Calendar calendar=Calendar.getInstance(Locale.getDefault());
                         calendar.setTimeInMillis(Long.parseLong(pTimestamp));
@@ -151,7 +152,14 @@ public class MainActivity extends AppCompatActivity {
                         holder.postDescr.setText(model.getpDescr());
                         Picasso.get().load(model.getpImage()).into(holder.postImg);
                         Picasso.get().load(model.getimage()).placeholder(R.drawable.profile_image).into(holder.profImg);
-
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent clickPostIntent=new Intent(MainActivity.this,ClickPostActivity.class);
+                                clickPostIntent.putExtra("PostKey",PostKey);
+                                startActivity(clickPostIntent);
+                            }
+                        });
                     }
 
                     @NonNull
@@ -222,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
        case R.id.nav_theme:
            SendUserToDarkModeActivity();
            break;
-
 
 
 

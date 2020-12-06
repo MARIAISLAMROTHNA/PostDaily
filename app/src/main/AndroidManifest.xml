@@ -17,8 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DarkModeActivity"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".ClickPostActivity"></activity>
+        <activity
+            android:name=".DarkModeActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".NewPostActivity" />
         <activity android:name=".UserProfileActivity" />
         <activity android:name=".LoginActivity">
