@@ -36,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserProfileActivity extends AppCompatActivity {
 
     private Button UpdateAccountSettings;
-    private EditText userName, userStatus;
+    private EditText userName, userStatus,userCountry,userGender;
     private CircleImageView userProfileImage;
 
     private String currentUserID;
@@ -98,6 +98,8 @@ public class UserProfileActivity extends AppCompatActivity {
         userName=findViewById(R.id.set_user_name);
         userStatus=findViewById(R.id.set_profile_status);
         userProfileImage=findViewById(R.id.set_profile_image_id);
+        userCountry=findViewById(R.id.set_country);
+        userGender=findViewById(R.id.set_gender);
         loadingBar =new ProgressDialog(this);
 
     }
@@ -173,11 +175,19 @@ public class UserProfileActivity extends AppCompatActivity {
     private void UpdateSettings() {
         String setUserName=userName.getText().toString();
         String setStatus=userStatus.getText().toString();
+        String setCountry=userCountry.getText().toString();
+        String setGender=userGender.getText().toString();
         if(TextUtils.isEmpty(setUserName)){
             Toast.makeText(this, "Please write your user name first...", Toast.LENGTH_SHORT).show();
         }
         if(TextUtils.isEmpty(setStatus)){
             Toast.makeText(this, "Please write your status...", Toast.LENGTH_SHORT).show();
+        }
+        if(TextUtils.isEmpty(setCountry)){
+            Toast.makeText(this, "Please write your country name...", Toast.LENGTH_SHORT).show();
+        }
+        if(TextUtils.isEmpty(setGender)){
+            Toast.makeText(this, "Please write your gender...", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -185,6 +195,8 @@ public class UserProfileActivity extends AppCompatActivity {
             profileMap.put("uid",currentUserID);
             profileMap.put("name",setUserName);
             profileMap.put("status",setStatus);
+            profileMap.put("country",setCountry);
+            profileMap.put("gender",setGender);
 
 
             RootRef.child("Users").child(currentUserID).updateChildren(profileMap)
@@ -214,18 +226,25 @@ public class UserProfileActivity extends AppCompatActivity {
                             String retrieveProfileImage=dataSnapshot.child("image").getValue().toString();
                             String retrieveUserName=dataSnapshot.child("name").getValue().toString();
                             String retrieveStatus=dataSnapshot.child("status").getValue().toString();
-
+                            String retriveCountry=dataSnapshot.child("country").getValue().toString();
+                            String retriveGender=dataSnapshot.child("gender").getValue().toString();
                             userName.setText(retrieveUserName);
                             userStatus.setText(retrieveStatus);
+                            userCountry.setText(retriveCountry);
+                            userGender.setText(retriveGender);
                             Picasso.get().load(retrieveProfileImage).into(userProfileImage);
 
                         }
                         else if((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))){
                             String retrieveUserName=dataSnapshot.child("name").getValue().toString();
                             String retrieveStatus=dataSnapshot.child("status").getValue().toString();
+                            String retriveCountry=dataSnapshot.child("country").getValue().toString();
+                            String retriveGender=dataSnapshot.child("gender").getValue().toString();
 
                             userName.setText(retrieveUserName);
                             userStatus.setText(retrieveStatus);
+                            userCountry.setText(retriveCountry);
+                            userGender.setText(retriveGender);
                         }
                         else{
                             userName.setVisibility(View.VISIBLE);

@@ -311,6 +311,12 @@ public class MainActivity extends AppCompatActivity {
        case R.id.nav_theme:
            SendUserToDarkModeActivity();
            break;
+       case R.id.nav_search:
+           break;
+       case R.id.nav_logout:
+           mAuth.signOut();
+           SendUserToLoginActivity();
+           break;
 
 
 

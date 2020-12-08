@@ -76,6 +76,15 @@ private DatabaseReference UsersRef;
                 holder.userName.setText(model.getName());
                 holder.userStatus.setText(model.getStatus());
                 Picasso.get().load(model.getImage()).placeholder(R.drawable.profile_image).into(holder.profileImage);
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String visitUserId=getRef(position).getKey();
+                        Intent profileIntent=new Intent(FindFriendsActivity.this,PersonProfileActivity.class);
+                        profileIntent.putExtra("visitUserId",visitUserId);
+                        startActivity(profileIntent);
+                    }
+                });
             }
 
             @NonNull

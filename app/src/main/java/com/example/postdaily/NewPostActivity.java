@@ -169,6 +169,9 @@ public class NewPostActivity extends AppCompatActivity {
                                                 description.setText("" );
                                                 imageView.setImageURI(null);
                                                 image_rui=null;
+                                                SendUserToMainActivity();
+
+
                                             }
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
@@ -211,10 +214,11 @@ public class NewPostActivity extends AppCompatActivity {
                         public void onSuccess(Void aVoid) {
                             pd.dismiss();
                             Toast.makeText(NewPostActivity.this,"Post Published", Toast.LENGTH_SHORT).show();
-                       title.setText("" );
-                       description.setText("" );
-                       imageView.setImageURI(null);
-                       image_rui=null;
+//                       title.setText("" );
+//                       description.setText("" );
+//                       imageView.setImageURI(null);
+//                       image_rui=null;
+                       SendUserToMainActivity();
 
 
                         }
@@ -231,6 +235,7 @@ public class NewPostActivity extends AppCompatActivity {
         }
 
         }
+
 
 
     private void showImagePickDialog() {
@@ -412,4 +417,10 @@ public class NewPostActivity extends AppCompatActivity {
                 });
     }
 
+    private void SendUserToMainActivity() {
+        Intent mainIntent =new Intent(NewPostActivity.this,MainActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(mainIntent);
+        finish();
+    }
 }
