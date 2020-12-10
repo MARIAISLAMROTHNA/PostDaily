@@ -222,7 +222,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if((dataSnapshot.exists()) && (dataSnapshot.hasChild("name")) && (dataSnapshot.hasChild("image"))){
+                        if((dataSnapshot.exists()) && (dataSnapshot.hasChild("name")) && (dataSnapshot.hasChild("image"))&& (dataSnapshot.hasChild("status"))&& (dataSnapshot.hasChild("country"))&& (dataSnapshot.hasChild("gender"))){
                             String retrieveProfileImage=dataSnapshot.child("image").getValue().toString();
                             String retrieveUserName=dataSnapshot.child("name").getValue().toString();
                             String retrieveStatus=dataSnapshot.child("status").getValue().toString();
@@ -235,7 +235,7 @@ public class UserProfileActivity extends AppCompatActivity {
                             Picasso.get().load(retrieveProfileImage).into(userProfileImage);
 
                         }
-                        else if((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))){
+                        else if((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))&& (dataSnapshot.hasChild("status"))&& (dataSnapshot.hasChild("country"))&& (dataSnapshot.hasChild("gender"))){
                             String retrieveUserName=dataSnapshot.child("name").getValue().toString();
                             String retrieveStatus=dataSnapshot.child("status").getValue().toString();
                             String retriveCountry=dataSnapshot.child("country").getValue().toString();

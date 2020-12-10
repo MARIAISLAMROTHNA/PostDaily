@@ -21,15 +21,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class PersonProfileActivity extends AppCompatActivity {
     private TextView userName, userStatus,userCountry,userGender;
     private CircleImageView userProfileImage;
-    private Button sendFollowReq,declineFollowRequest;
-    private DatabaseReference profileUserRef,UserRef,FollowReqRef;
+    private Button sendFollowRequestBtn,declineFollowRequestBtn;
+    private DatabaseReference profileUserRef,UserRef,FollowReqRef,FollowRef;
     private FirebaseAuth mAuth;
     private String senderUserId,receiverUserId,currentState;
+    private String saveCurrentDate;
 
 
     @Override
@@ -43,13 +47,16 @@ public class PersonProfileActivity extends AppCompatActivity {
         receiverUserId=getIntent().getExtras().get("visitUserId").toString();
         UserRef= FirebaseDatabase.getInstance().getReference().child("Users");
         FollowReqRef=FirebaseDatabase.getInstance().getReference().child("FollowRequests");
+        FollowRef=FirebaseDatabase.getInstance().getReference().child("Friends");
 
 
-        InitializeField();
+
+
+    InitializeField();
         UserRef.child(receiverUserId).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if((dataSnapshot.exists()) && (dataSnapshot.hasChild("name")) && (dataSnapshot.hasChild("image"))){
+                        if((dataSnapshot.exists()) && (dataSnapshot.hasChild("name")) && (dataSnapshot.hasChild("image"))&& (dataSnapshot.hasChild("status"))&& (dataSnapshot.hasChild("country"))&& (dataSnapshot.hasChild("gender"))){
                             String retrieveProfileImage=dataSnapshot.child("image").getValue().toString();
                             String retrieveUserName=dataSnapshot.child("name").getValue().toString();
                             String retrieveStatus=dataSnapshot.child("status").getValue().toString();
@@ -60,24 +67,10 @@ public class PersonProfileActivity extends AppCompatActivity {
                             userCountry.setText(retriveCountry);
                             userGender.setText(retriveGender);
                             Picasso.get().load(retrieveProfileImage).into(userProfileImage);
-
-                        }
-                        else if((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))){
-                            String retrieveUserName=dataSnapshot.child("name").getValue().toString();
-                            String retrieveStatus=dataSnapshot.child("status").getValue().toString();
-                            String retriveCountry=dataSnapshot.child("country").getValue().toString();
-                            String retriveGender=dataSnapshot.child("gender").getValue().toString();
-
-                            userName.setText(retrieveUserName);
-                            userStatus.setText(retrieveStatus);
-                            userCountry.setText(retriveCountry);
-                            userGender.setText(retriveGender);
                             MaintainFriendRequest();
+
                         }
-                        else {
-                            String retrieveUserName=dataSnapshot.child("name").getValue().toString();
-                            userName.setText(retrieveUserName);
-                        }
+
 
                     }
 
@@ -87,27 +80,146 @@ public class PersonProfileActivity extends AppCompatActivity {
                     }
                 });
 
-        declineFollowRequest.setVisibility(View.INVISIBLE);
-        declineFollowRequest.setEnabled(false);
+        declineFollowRequestBtn.setVisibility(View.INVISIBLE);
+        declineFollowRequestBtn.setEnabled(false);
 
         if(!senderUserId.equals(receiverUserId))
         {
 
-            sendFollowReq.setOnClickListener(new View.OnClickListener() {
+            sendFollowRequestBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    sendFollowReq.setEnabled(false);
+                    sendFollowRequestBtn.setEnabled(false);
                     if(currentState.equals("not_friends"))
                     {
                         sendFollowReqToPerson();
                     }
+                    if(currentState.equals("request_sent"))
+                    {
+                        cancelFriendRequest();
+                    }
+                    if(currentState.equals("request_received"))
+                    {
+                        acceptFriendReqest();
+                    }
+                    if (currentState.equals("friends"))
+                    {
+                        UnfollowAnExistingFriend();
+                    }
                 }
+
             });
         }
         else{
-            sendFollowReq.setVisibility(View.INVISIBLE);
-            declineFollowRequest.setVisibility(View.INVISIBLE);
+            sendFollowRequestBtn.setVisibility(View.INVISIBLE);
+            declineFollowRequestBtn.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void UnfollowAnExistingFriend()
+    {
+        FollowRef.child(senderUserId).child(receiverUserId)
+                .removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            FollowRef.child(receiverUserId).child(senderUserId)
+                                    .removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                sendFollowRequestBtn.setEnabled(true);
+                                                currentState="not_friends";
+                                                sendFollowRequestBtn.setText("Send Follow Request");
+
+                                                declineFollowRequestBtn.setVisibility(View.INVISIBLE);
+                                                declineFollowRequestBtn.setEnabled(false);
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                });
+    }
+
+    private void acceptFriendReqest()
+    {
+        Calendar calForDate=Calendar.getInstance();
+        SimpleDateFormat currentDate=new SimpleDateFormat("dd-MMM-yyyy");
+        saveCurrentDate=currentDate.format(calForDate.getTime());
+        FollowRef.child(senderUserId).child(receiverUserId).child("date").setValue(saveCurrentDate)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                        {
+                            FollowRef.child(receiverUserId).child(senderUserId).child("date").setValue(saveCurrentDate)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful())
+                                            {
+                                                FollowReqRef.child(senderUserId).child(receiverUserId)
+                                                        .removeValue()
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if(task.isSuccessful()){
+                                                                    FollowReqRef.child(receiverUserId).child(senderUserId)
+                                                                            .removeValue()
+                                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                @Override
+                                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                                    if(task.isSuccessful()){
+                                                                                        sendFollowRequestBtn.setEnabled(true);
+                                                                                        currentState="friends";
+                                                                                        sendFollowRequestBtn.setText("Unfollow");
+                                                                                        declineFollowRequestBtn.setVisibility(View.INVISIBLE);
+                                                                                        declineFollowRequestBtn.setEnabled(false);
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                }
+                                                            }
+                                                        });
+
+                                            }
+                                        }
+                                    });
+
+                        }
+                    }
+                });
+
+    }
+
+    private void cancelFriendRequest() {
+        FollowReqRef.child(senderUserId).child(receiverUserId)
+                .removeValue()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            FollowReqRef.child(receiverUserId).child(senderUserId)
+                                   .removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                sendFollowRequestBtn.setEnabled(true);
+                                                currentState="not_friends";
+                                                sendFollowRequestBtn.setText("Send Follow Request");
+                                                declineFollowRequestBtn.setVisibility(View.INVISIBLE);
+                                                declineFollowRequestBtn.setEnabled(false);
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                });
+
     }
 
     private void MaintainFriendRequest()
@@ -122,11 +234,47 @@ public class PersonProfileActivity extends AppCompatActivity {
                             if(request_type.equals("sent"))
                             {
                                 currentState="request_sent";
-                                sendFollowReq.setText("Cancel friend request");
-                                declineFollowRequest.setVisibility(View.INVISIBLE);
-                                declineFollowRequest.setEnabled(false);
+                                sendFollowRequestBtn.setText("Cancel Follow Request");
+                                declineFollowRequestBtn.setVisibility(View.INVISIBLE);
+                                declineFollowRequestBtn.setEnabled(false);
+                            }
+                            else if(request_type.equals("received"))
+                            {
+                                currentState="request_received";
+                                sendFollowRequestBtn.setText("Accept Follow Request");
+                                declineFollowRequestBtn.setVisibility(View.VISIBLE);
+                                declineFollowRequestBtn.setEnabled(true);
+                                declineFollowRequestBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        cancelFriendRequest();
+                                    }
+                                });
                             }
 
+                        }
+                        else
+                        {
+                            FollowRef.child(senderUserId)
+                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if(snapshot.hasChild(receiverUserId))
+                                            {
+                                                currentState="friends";
+                                                sendFollowRequestBtn.setText("Unfollow");
+
+                                                declineFollowRequestBtn.setVisibility(View.INVISIBLE);
+                                                declineFollowRequestBtn.setEnabled(false);
+
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
                         }
                     }
 
@@ -150,11 +298,11 @@ public class PersonProfileActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        sendFollowReq.setEnabled(true);
+                                        sendFollowRequestBtn.setEnabled(true);
                                         currentState="request_sent";
-                                        sendFollowReq.setText("Cancel Friend Request");
-                                        declineFollowRequest.setVisibility(View.INVISIBLE);
-                                        declineFollowRequest.setEnabled(false);
+                                        sendFollowRequestBtn.setText("Cancel Follow Request");
+                                        declineFollowRequestBtn.setVisibility(View.INVISIBLE);
+                                        declineFollowRequestBtn.setEnabled(false);
                                     }
                                 }
                             });
@@ -166,8 +314,8 @@ public class PersonProfileActivity extends AppCompatActivity {
 
     private void InitializeField()
     {
-        sendFollowReq=findViewById(R.id.person_send_follow_req);
-        declineFollowRequest=findViewById(R.id.person_decline_follow_req);
+        sendFollowRequestBtn=findViewById(R.id.person_send_follow_req);
+        declineFollowRequestBtn=findViewById(R.id.person_decline_follow_req);
         userName=findViewById(R.id.person_full_name);
         userStatus=findViewById(R.id.person_status);
         userProfileImage=findViewById(R.id.person_profile_pic);
