@@ -281,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
            SendUserToPostActivity();
            break;
        case R.id.nav_friends:
+           SendUserToFriendsActivity();
            Toast.makeText(MainActivity.this,"FriendsChecked",Toast.LENGTH_LONG).show();
            break;
        case R.id.nav_find_friendst:
@@ -301,6 +302,13 @@ public class MainActivity extends AppCompatActivity {
 
    }
     }
+
+    private void SendUserToFriendsActivity() {
+        Intent friendsIntent = new Intent(MainActivity.this, FriendsActivity.class);
+        startActivity(friendsIntent);
+    }
+
+
     private void SendUserToFindFriendsActivity() {
         Intent findfriendsIntent = new Intent(MainActivity.this, FindFriendsActivity.class);
         startActivity(findfriendsIntent);
