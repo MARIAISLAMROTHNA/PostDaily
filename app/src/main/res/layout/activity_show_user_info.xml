@@ -10,17 +10,17 @@
     tools:context=".PersonProfileActivity"
     android:orientation="vertical">
 
-        <include
-            layout="@layout/app_bar_layout"
-            android:id="@+id/profile_toolbar">
-        </include>
+    <include
+        layout="@layout/app_bar_layout"
+        android:id="@+id/profile_toolbar">
+    </include>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/person_profile_pic"
+            android:id="@+id/my_profile_pic"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_alignParentTop="true"
@@ -31,10 +31,10 @@
             app:civ_border_width="5dp" />
 
         <TextView
-            android:id="@+id/person_full_name"
+            android:id="@+id/my_full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/person_profile_pic"
+            android:layout_below="@id/my_profile_pic"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
@@ -47,10 +47,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/person_status"
+            android:id="@+id/my_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/person_full_name"
+            android:layout_below="@id/my_full_name"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
@@ -67,7 +67,7 @@
             android:id="@+id/horizonalLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/person_status"
+            android:layout_below="@+id/my_status"
             android:layout_marginStart="80dp"
             android:layout_marginEnd="50dp"
             android:orientation="horizontal"
@@ -84,7 +84,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/person_country"
+                android:id="@+id/my_country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -116,7 +116,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/person_gender"
+                android:id="@+id/my_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -131,29 +131,29 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/person_send_follow_req"
-        android:layout_width="250dp"
+        android:id="@+id/myFriends"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:textColor="@android:color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="99dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/button"
-        android:text="Send Follow Request"
+        android:text="My Friends"
         android:textAlignment="center"
+        android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/person_decline_follow_req"
-        android:layout_width="250dp"
+        android:id="@+id/myPost"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="79dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/button"
-        android:text="Decline Follow Request"
+        android:text="My Post"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="16sp"

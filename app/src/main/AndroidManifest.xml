@@ -17,7 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FriendsActivity"></activity>
+        <activity android:name=".MyPostsActivity"></activity>
+        <activity android:name=".ShowUserInfoActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".FriendsActivity" />
         <activity android:name=".PersonProfileActivity" />
         <activity android:name=".CommentsActivity" />
         <activity

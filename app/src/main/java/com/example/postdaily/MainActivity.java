@@ -271,6 +271,7 @@ public class MainActivity extends AppCompatActivity {
    switch (item.getItemId())
    {
        case R.id.nav_home:
+           SendUserToProfileActivity();
            Toast.makeText(MainActivity.this,"HomeChecked",Toast.LENGTH_LONG).show();
            break;
        case R.id.nav_profile:
@@ -301,6 +302,10 @@ public class MainActivity extends AppCompatActivity {
 
 
    }
+    }
+    private void SendUserToProfileActivity() {
+        Intent userProfile = new Intent(MainActivity.this,ShowUserInfoActivity.class);
+        startActivity(userProfile);
     }
 
     private void SendUserToFriendsActivity() {
