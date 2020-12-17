@@ -83,16 +83,7 @@ public class FriendsActivity extends AppCompatActivity {
 
                    }
                });
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String visit_user_id=getRef(position).getKey();
 
-                        Intent profileInten=new Intent(FriendsActivity.this,PersonProfileActivity.class);
-                        profileInten.putExtra("visit_user_id",visit_user_id);
-                        startActivity(profileInten);
-                    }
-                });
             }
 
             @NonNull

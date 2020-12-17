@@ -33,9 +33,9 @@
         android:icon="@drawable/mode"/>
 
     <item
-        android:id="@+id/nav_search"
-        android:title="Search"
-        android:icon="@drawable/search"/>
+        android:id="@+id/nav_password"
+        android:title="Set Pin"
+        android:icon="@drawable/password"/>
 
 
     <item

@@ -110,11 +110,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayAllUsersPost() {
-
-        Query query=Postsref.orderByChild("Users/uid").equalTo(null);
-
         FirebaseRecyclerOptions<Posts> options=new FirebaseRecyclerOptions.Builder<Posts>()
-                .setQuery(query,Posts.class)
+                .setQuery(Postsref,Posts.class)
                 .build();
 
         FirebaseRecyclerAdapter<Posts,PostsViewHolder> adapter=
@@ -292,7 +289,9 @@ public class MainActivity extends AppCompatActivity {
        case R.id.nav_theme:
            SendUserToDarkModeActivity();
            break;
-       case R.id.nav_search:
+       case R.id.nav_password:
+           SendUserToPasswordSettingsActivity();
+           Toast.makeText(MainActivity.this,"FriendsChecked",Toast.LENGTH_LONG).show();
            break;
        case R.id.nav_logout:
            mAuth.signOut();
@@ -303,6 +302,12 @@ public class MainActivity extends AppCompatActivity {
 
    }
     }
+
+    private void SendUserToPasswordSettingsActivity() {
+        Intent PasswordSetIntent = new Intent(MainActivity.this,PasswordSettingsActivity.class);
+        startActivity(PasswordSetIntent);
+    }
+
     private void SendUserToProfileActivity() {
         Intent userProfile = new Intent(MainActivity.this,ShowUserInfoActivity.class);
         startActivity(userProfile);
