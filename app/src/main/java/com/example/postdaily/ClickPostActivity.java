@@ -3,7 +3,6 @@ package com.example.postdaily;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -38,19 +37,12 @@ private String PostKey,CurrentUserid,databaseUserid,description,image;
 private FirebaseAuth mAuth;
 private DatabaseReference ClickPostRef;
 TextToSpeech textToSpeech;
-private Boolean speak=true;
-private Toolbar mToolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_click_post);
-        mToolbar=(Toolbar)findViewById(R.id.click_post_toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle("Post Details");
 
         mAuth=FirebaseAuth.getInstance();
         CurrentUserid=mAuth.getCurrentUser().getUid();
@@ -116,20 +108,7 @@ private Toolbar mToolbar;
         ListenPostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (speak == true) {
-                    ListenPostButton.setImageResource(R.drawable.listen);
-                    textToSpeech.speak(description, TextToSpeech.QUEUE_FLUSH, null);
-                    speak=false;
-                }
-                else if(speak==false)
-                {
-                    if(textToSpeech!=null){
-                        ListenPostButton.setImageResource(R.drawable.speakeroff);
-                        textToSpeech.stop();
-                    }
-                    speak=true;
-                }
-
+                textToSpeech.speak(description, TextToSpeech.QUEUE_FLUSH, null);
             }
         });
 
@@ -137,8 +116,7 @@ private Toolbar mToolbar;
     }
     @Override
     protected void onDestroy() {
-        if(textToSpeech!=null) {
-            ListenPostButton.setImageResource(R.drawable.speakeroff);
+        if(textToSpeech!=null){
             textToSpeech.stop();
             textToSpeech.shutdown();
         }

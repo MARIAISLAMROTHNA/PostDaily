@@ -4,7 +4,6 @@
     <string name="drawer_close">Drawer Close</string>
     <string name="post_des_hint">Add a description</string>
     <string name="new_post_btn_hint">Post</string>
-    <string name="scan_post_btn_hint">Scan text from image</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
