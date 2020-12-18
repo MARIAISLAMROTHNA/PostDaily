@@ -53,7 +53,7 @@ public class NewPostActivity extends AppCompatActivity {
     private Toolbar newpostToolbar;
     private EditText title,description;
     private ImageView imageView;
-    private Button addPostBtn;
+    private Button addPostBtn,scanPostBtn;
 
     private static final int CAMERA_REQUEST_CODE=100;
     private static final int STORAGE_REQUEST_CODE=200;
@@ -94,6 +94,7 @@ public class NewPostActivity extends AppCompatActivity {
         description=findViewById(R.id.addDescriptionEt);
         imageView=findViewById(R.id.new_post_image);
         addPostBtn=findViewById(R.id.post_btn);
+        scanPostBtn=findViewById(R.id.scan_btn);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,10 +108,6 @@ public class NewPostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String titles=title.getText().toString().trim();
                 String descriptions=description.getText().toString().trim();
-//                if(TextUtils.isEmpty(titles)){
-//                    Toast.makeText(NewPostActivity.this,"Enter title",Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
                 if (TextUtils.isEmpty(descriptions))
                 {
                     Toast.makeText(NewPostActivity.this,"Enter description",Toast.LENGTH_SHORT).show();
@@ -126,7 +123,18 @@ public class NewPostActivity extends AppCompatActivity {
                 }
             }
         });
+        scanPostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendUserToOcrActivity();
+            }
+        });
 
+    }
+
+    private void sendUserToOcrActivity() {
+        Intent OcrIntent = new Intent(NewPostActivity.this, OcrActivity.class);
+        startActivity(OcrIntent);
     }
 
     private void uploadData(final String titles, final String descriptions, String uri) {

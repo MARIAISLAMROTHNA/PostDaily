@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
     Boolean LikeChecker=false;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-        uid=mAuth.getCurrentUser().getUid();
         RootRef = FirebaseDatabase.getInstance().getReference();
         UserRef=FirebaseDatabase.getInstance().getReference().child("Users");
         Postsref=FirebaseDatabase.getInstance().getReference().child("Posts");
@@ -332,9 +329,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
         if (currentUser == null) {
             SendUserToLoginActivity();
         } else {

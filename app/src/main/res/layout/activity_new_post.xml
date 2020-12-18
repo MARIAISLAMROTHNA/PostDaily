@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,54 +15,58 @@
 
     <ImageView
         android:id="@+id/new_post_image"
-        android:layout_width="399dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="32dp"
-        android:maxHeight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="251dp"
+        android:layout_below="@+id/new_post_toolbar"
+        android:layout_marginTop="3dp"
+        android:maxHeight="300dp"
         android:scaleType="fitXY"
-
-        android:src="@drawable/select_image"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_post_toolbar" />
+        android:src="@drawable/select_image" />
 
     <EditText
         android:id="@+id/addDescriptionEt"
-        android:layout_width="394dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_below="@+id/new_post_image"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/inputs"
+        android:background="@drawable/post_border"
         android:ems="10"
         android:hint="@string/post_des_hint"
         android:inputType="textMultiLine"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_post_image"
-        app:layout_constraintVertical_bias="0.093" />
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/scan_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/post_btn"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button"
+        android:padding="4dp"
+        android:text="Scan text from image"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_light"
+        android:textSize="24dp" />
 
     <Button
         android:id="@+id/post_btn"
-        android:layout_width="206dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="140dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/button"
-        android:padding="16dp"
-        android:text="@string/new_post_btn_hint"
-        android:textColor="#F4F4F4"
-        android:textColorHint="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addDescriptionEt"
-        app:layout_constraintVertical_bias="1.0" />
+        android:padding="4dp"
+        android:text="Post"
+        android:textAllCaps="false"
+        android:textColor="@android:color/background_light"
+        android:textSize="24dp" />
 
     <EditText
         android:id="@+id/titlET"
@@ -72,11 +76,6 @@
         android:ems="10"
         android:hint="Add Title"
         android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104" />
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
