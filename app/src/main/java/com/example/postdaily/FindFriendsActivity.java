@@ -42,6 +42,8 @@ private DatabaseReference UsersRef;
         UsersRef= FirebaseDatabase.getInstance().getReference().child("Users");
         mToolbar = (Toolbar)findViewById(R.id.find_friends_toolbar);
         setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Find Friends");
 
         SearchResultList=findViewById(R.id.search_friend_list);

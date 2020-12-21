@@ -3,13 +3,11 @@ package com.example.postdaily;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,6 +28,7 @@ public class PersonProfileActivity extends AppCompatActivity {
     private TextView userName, userStatus,userCountry,userGender;
     private CircleImageView userProfileImage;
     private Button sendFollowRequestBtn,declineFollowRequestBtn;
+    private Toolbar mToolbar;
     private DatabaseReference profileUserRef,UserRef,FollowReqRef,FollowRef;
     private FirebaseAuth mAuth;
     private String senderUserId,receiverUserId,currentState;
@@ -40,6 +39,12 @@ public class PersonProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_profile);
+
+        mToolbar = findViewById(R.id.Person_profile_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Person Details");
 
         mAuth=FirebaseAuth.getInstance();
         senderUserId=mAuth.getCurrentUser().getUid();
@@ -132,7 +137,7 @@ public class PersonProfileActivity extends AppCompatActivity {
                                             if(task.isSuccessful()){
                                                 sendFollowRequestBtn.setEnabled(true);
                                                 currentState="not_friends";
-                                                sendFollowRequestBtn.setText("Send Follow Request");
+                                                sendFollowRequestBtn.setText("Send Friend Request");
 
                                                 declineFollowRequestBtn.setVisibility(View.INVISIBLE);
                                                 declineFollowRequestBtn.setEnabled(false);
@@ -175,7 +180,7 @@ public class PersonProfileActivity extends AppCompatActivity {
                                                                                     if(task.isSuccessful()){
                                                                                         sendFollowRequestBtn.setEnabled(true);
                                                                                         currentState="friends";
-                                                                                        sendFollowRequestBtn.setText("Unfollow");
+                                                                                        sendFollowRequestBtn.setText("Unfriend");
                                                                                         declineFollowRequestBtn.setVisibility(View.INVISIBLE);
                                                                                         declineFollowRequestBtn.setEnabled(false);
                                                                                     }
@@ -210,7 +215,7 @@ public class PersonProfileActivity extends AppCompatActivity {
                                             if(task.isSuccessful()){
                                                 sendFollowRequestBtn.setEnabled(true);
                                                 currentState="not_friends";
-                                                sendFollowRequestBtn.setText("Send Follow Request");
+                                                sendFollowRequestBtn.setText("Send Friend Request");
                                                 declineFollowRequestBtn.setVisibility(View.INVISIBLE);
                                                 declineFollowRequestBtn.setEnabled(false);
                                             }
@@ -234,14 +239,14 @@ public class PersonProfileActivity extends AppCompatActivity {
                             if(request_type.equals("sent"))
                             {
                                 currentState="request_sent";
-                                sendFollowRequestBtn.setText("Cancel Follow Request");
+                                sendFollowRequestBtn.setText("Cancel Friend Request");
                                 declineFollowRequestBtn.setVisibility(View.INVISIBLE);
                                 declineFollowRequestBtn.setEnabled(false);
                             }
                             else if(request_type.equals("received"))
                             {
                                 currentState="request_received";
-                                sendFollowRequestBtn.setText("Accept Follow Request");
+                                sendFollowRequestBtn.setText("Accept Friend Request");
                                 declineFollowRequestBtn.setVisibility(View.VISIBLE);
                                 declineFollowRequestBtn.setEnabled(true);
                                 declineFollowRequestBtn.setOnClickListener(new View.OnClickListener() {
@@ -262,7 +267,7 @@ public class PersonProfileActivity extends AppCompatActivity {
                                             if(snapshot.hasChild(receiverUserId))
                                             {
                                                 currentState="friends";
-                                                sendFollowRequestBtn.setText("Unfollow");
+                                                sendFollowRequestBtn.setText("Unfriend");
 
                                                 declineFollowRequestBtn.setVisibility(View.INVISIBLE);
                                                 declineFollowRequestBtn.setEnabled(false);
@@ -300,7 +305,7 @@ public class PersonProfileActivity extends AppCompatActivity {
                                     if(task.isSuccessful()){
                                         sendFollowRequestBtn.setEnabled(true);
                                         currentState="request_sent";
-                                        sendFollowRequestBtn.setText("Cancel Follow Request");
+                                        sendFollowRequestBtn.setText("Cancel Friend Request");
                                         declineFollowRequestBtn.setVisibility(View.INVISIBLE);
                                         declineFollowRequestBtn.setEnabled(false);
                                     }

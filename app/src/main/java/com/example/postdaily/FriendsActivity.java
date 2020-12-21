@@ -2,6 +2,7 @@ package com.example.postdaily;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,12 +31,19 @@ public class FriendsActivity extends AppCompatActivity {
     private DatabaseReference FriendsRef,UserRef;
     private FirebaseAuth mAuth;
     private String uid;
+    private Toolbar mToolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
+
+        mToolbar=(Toolbar)findViewById(R.id.friend_page_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("My Friends");
 
         mAuth=FirebaseAuth.getInstance();
         uid=mAuth.getCurrentUser().getUid();

@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
@@ -34,17 +35,27 @@ public class DarkModeActivity extends AppCompatActivity {
         switchBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    startActivity(new Intent(getApplicationContext(),DarkModeActivity.class));
-                    finish();
+                try {
+                    if(isChecked){
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        startActivity(new Intent(getApplicationContext(),DarkModeActivity.class));
+                        finish();
+                    }
+                    else
+                    {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        startActivity(new Intent(getApplicationContext(),DarkModeActivity.class));
+                        finish();
+                    }
+
                 }
-                else
+                catch (Exception e)
                 {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    startActivity(new Intent(getApplicationContext(),DarkModeActivity.class));
-                    finish();
+                    Log.e("exceptions","exceptions"+e);
+
                 }
+
+
             }
         });
     }

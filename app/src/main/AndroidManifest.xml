@@ -9,17 +9,23 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:name=".OfflineFirebase"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="false"
+        android:icon="@drawable/applogo"
         android:label="PostDaily"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OcrActivity"
-            android:parentActivityName=".ClickPostActivity">
-        </activity>
+        <activity android:name=".RequestActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".OcrActivity"
+            android:parentActivityName=".ClickPostActivity" />
         <activity android:name=".PasswordActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,24 +34,36 @@
             </intent-filter>
         </activity>
         <activity android:name=".PasswordSettingsActivity" />
-        <activity android:name=".MyPostsActivity" />
+        <activity android:name=".MyPostsActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".ShowUserInfoActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".FriendsActivity" />
-        <activity android:name=".PersonProfileActivity" />
+
+        <activity android:name=".FriendsActivity"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".PersonProfileActivity"
+            android:parentActivityName=".MainActivity"/>
+
         <activity android:name=".CommentsActivity" />
         <activity
             android:name=".FindFriendsActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".ClickPostActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ClickPostActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".DarkModeActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".NewPostActivity" />
-        <activity android:name=".UserProfileActivity" />
-        <activity android:name=".LoginActivity"></activity>
+
+        <activity android:name=".NewPostActivity"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".UserProfileActivity"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
         <activity

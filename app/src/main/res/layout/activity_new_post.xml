@@ -68,14 +68,5 @@
         android:textColor="@android:color/background_light"
         android:textSize="24dp" />
 
-    <EditText
-        android:id="@+id/titlET"
-        android:visibility="invisible"
-        android:layout_width="124dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:hint="Add Title"
-        android:inputType="text"
-        />
 
 </RelativeLayout>

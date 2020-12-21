@@ -1,19 +1,18 @@
 package com.example.postdaily;
 
 public class Posts {
-    public String uid,email,pDescr,pId,pImage,pTime,pTitle,name,image;
+    public String uid,email,pDescr,pId,pImage,pTime,name,image;
 
    public Posts(){
 
    }
-    public Posts(String uid, String email, String pDescr, String pId, String pImage, String pTime, String pTitle, String name,String image) {
+    public Posts(String uid, String email, String pDescr, String pId, String pImage, String pTime, String name,String image) {
         this.uid = uid;
         this.email = email;
         this.pDescr = pDescr;
         this.pId = pId;
         this.pImage = pImage;
         this.pTime = pTime;
-        this.pTitle = pTitle;
         this.name = name;
         this.image=image;
     }
@@ -69,14 +68,6 @@ public class Posts {
 
     public void setpTime(String pTime) {
         this.pTime = pTime;
-    }
-
-    public String getpTitle() {
-        return pTitle;
-    }
-
-    public void setpTitle(String pTitle) {
-        this.pTitle = pTitle;
     }
 
     public String getName() {

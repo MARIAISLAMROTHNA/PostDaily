@@ -6,7 +6,6 @@
     app:cardMaxElevation="3dp"
     app:cardCornerRadius="3dp"
     app:cardUseCompatPadding="true"
-    android:backgroundTint="#88FFFFFF"
     app:cardBackgroundColor="@android:color/white">
     <LinearLayout
         android:layout_width="match_parent"

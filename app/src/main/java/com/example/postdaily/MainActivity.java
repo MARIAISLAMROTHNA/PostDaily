@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         View navview=navigationView.inflateHeaderView(R.layout.navigation_header);
         userName=(TextView)navview.findViewById(R.id.nav_user_full_name);
         userImg=(CircleImageView)navview.findViewById(R.id.nav_user_pro);
-        AddHeaderNameImage();
 
 
 
@@ -102,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         postList.setLayoutManager(linearLayoutManager);
 
 
-        displayAllUsersPost();
+       // displayAllUsersPost();
 
     }
 
@@ -279,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
            SendUserToFriendsActivity();
            Toast.makeText(MainActivity.this,"FriendsChecked",Toast.LENGTH_LONG).show();
            break;
-       case R.id.nav_find_friendst:
+       case R.id.nav_find_friends:
           SendUserToFindFriendsActivity();
            break;
 
@@ -290,14 +289,24 @@ public class MainActivity extends AppCompatActivity {
            SendUserToPasswordSettingsActivity();
            Toast.makeText(MainActivity.this,"FriendsChecked",Toast.LENGTH_LONG).show();
            break;
+       case R.id.nav_req:
+           SendUserToRequestActivity();
+           break;
        case R.id.nav_logout:
            mAuth.signOut();
+           finish();
            SendUserToLoginActivity();
            break;
 
 
 
+
    }
+    }
+
+    private void SendUserToRequestActivity() {
+        Intent ReqIntent = new Intent(MainActivity.this,RequestActivity.class);
+        startActivity(ReqIntent);
     }
 
     private void SendUserToPasswordSettingsActivity() {
@@ -334,6 +343,8 @@ public class MainActivity extends AppCompatActivity {
             SendUserToLoginActivity();
         } else {
             VerifyUserExistance();
+            AddHeaderNameImage();
+            displayAllUsersPost();
         }
 
     }

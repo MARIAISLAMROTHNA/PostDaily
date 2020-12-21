@@ -46,6 +46,7 @@ private Toolbar mToolbar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_click_post);
+
         mToolbar=(Toolbar)findViewById(R.id.click_post_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

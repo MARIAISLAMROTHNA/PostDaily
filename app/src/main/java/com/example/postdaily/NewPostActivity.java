@@ -51,7 +51,7 @@ public class NewPostActivity extends AppCompatActivity {
     StorageReference UserProfileImageRef;
 
     private Toolbar newpostToolbar;
-    private EditText title,description;
+    private EditText description;
     private ImageView imageView;
     private Button addPostBtn,scanPostBtn;
 
@@ -77,6 +77,8 @@ public class NewPostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_post);
         newpostToolbar = findViewById(R.id.new_post_toolbar);
         setSupportActionBar(newpostToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Add New Post");
 
         cameraPermissions=new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -89,8 +91,6 @@ public class NewPostActivity extends AppCompatActivity {
         checkUserStatus();
         RetrieveUserInfo();
 
-
-        title=findViewById(R.id.titlET);
         description=findViewById(R.id.addDescriptionEt);
         imageView=findViewById(R.id.new_post_image);
         addPostBtn=findViewById(R.id.post_btn);
@@ -106,7 +106,6 @@ public class NewPostActivity extends AppCompatActivity {
         addPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String titles=title.getText().toString().trim();
                 String descriptions=description.getText().toString().trim();
                 if (TextUtils.isEmpty(descriptions))
                 {
@@ -115,10 +114,10 @@ public class NewPostActivity extends AppCompatActivity {
                 }
                 if(image_rui==null)
                 {
-                    uploadData(titles,descriptions,"noImage");
+                    uploadData(descriptions,"noImage");
                 }
                 else{
-                    uploadData(titles,descriptions,String.valueOf(image_rui));
+                    uploadData(descriptions,String.valueOf(image_rui));
 
                 }
             }
@@ -137,7 +136,7 @@ public class NewPostActivity extends AppCompatActivity {
         startActivity(OcrIntent);
     }
 
-    private void uploadData(final String titles, final String descriptions, String uri) {
+    private void uploadData(final String descriptions, String uri) {
 
         pd.setMessage("Publishing post...");
         pd.show();
@@ -161,7 +160,6 @@ public class NewPostActivity extends AppCompatActivity {
                                 hashMap.put("image",dp);
                                 hashMap.put("email",email);
                                 hashMap.put("pId",timeStamp);
-                                hashMap.put("pTittle",titles);
                                 hashMap.put("pDescr",descriptions);
                                 hashMap.put("pImage",downloadUri);
                                 hashMap.put("pTime",timeStamp);
@@ -173,7 +171,6 @@ public class NewPostActivity extends AppCompatActivity {
                                             public void onSuccess(Void aVoid) {
                                                 pd.dismiss();
                                                 Toast.makeText(NewPostActivity.this,"Post Published", Toast.LENGTH_SHORT).show();
-                                                title.setText("" );
                                                 description.setText("" );
                                                 imageView.setImageURI(null);
                                                 image_rui=null;
@@ -210,7 +207,6 @@ public class NewPostActivity extends AppCompatActivity {
             hashMap.put("image",dp);
             hashMap.put("email",email);
             hashMap.put("pId",timeStamp);
-            hashMap.put("pTittle",titles);
             hashMap.put("pDescr",descriptions);
             hashMap.put("pImage","noImage");
             hashMap.put("pTime",timeStamp);

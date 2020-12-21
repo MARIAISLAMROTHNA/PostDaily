@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTintMode="src_atop"
-    android:backgroundTint="#88FFFFFF"
+    android:background="@color/background"
     tools:context=".OcrActivity">
 
     <EditText

@@ -41,8 +41,8 @@ public class PasswordSettingsActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.password_toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        // getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle("Password");
 
         preferences = PreferenceManager.getDefaultSharedPreferences(PasswordSettingsActivity.this);
