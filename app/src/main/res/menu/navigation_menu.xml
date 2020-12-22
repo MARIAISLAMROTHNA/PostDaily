@@ -11,6 +11,11 @@
     android:icon="@drawable/add_post"
     />
     <item
+        android:id="@+id/nav_search"
+        android:title="Search Post"
+        android:icon="@drawable/search"
+        />
+    <item
         android:id="@+id/nav_profile"
         android:title="Edit Profile"
         android:icon="@drawable/profile_icon"

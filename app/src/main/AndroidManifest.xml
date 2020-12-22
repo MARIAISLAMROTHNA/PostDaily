@@ -21,8 +21,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RequestActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".SearchPostActivity"></activity>
+        <activity
+            android:name=".RequestActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".OcrActivity"
             android:parentActivityName=".ClickPostActivity" />
@@ -34,18 +36,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".PasswordSettingsActivity" />
-        <activity android:name=".MyPostsActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".MyPostsActivity"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ShowUserInfoActivity"
             android:parentActivityName=".MainActivity" />
-
-        <activity android:name=".FriendsActivity"
-            android:parentActivityName=".MainActivity"/>
-
-        <activity android:name=".PersonProfileActivity"
-            android:parentActivityName=".MainActivity"/>
-
+        <activity
+            android:name=".FriendsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".PersonProfileActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".CommentsActivity" />
         <activity
             android:name=".FindFriendsActivity"
@@ -56,13 +58,12 @@
         <activity
             android:name=".DarkModeActivity"
             android:parentActivityName=".MainActivity" />
-
-        <activity android:name=".NewPostActivity"
-            android:parentActivityName=".MainActivity"/>
-
-        <activity android:name=".UserProfileActivity"
-            android:parentActivityName=".MainActivity"/>
-
+        <activity
+            android:name=".NewPostActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".UserProfileActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />

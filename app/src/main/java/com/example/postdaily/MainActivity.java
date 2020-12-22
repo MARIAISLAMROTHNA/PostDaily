@@ -292,6 +292,9 @@ public class MainActivity extends AppCompatActivity {
        case R.id.nav_req:
            SendUserToRequestActivity();
            break;
+       case R.id.nav_search:
+           SendUserToSearchPostActivity();
+           break;
        case R.id.nav_logout:
            mAuth.signOut();
            finish();
@@ -302,6 +305,11 @@ public class MainActivity extends AppCompatActivity {
 
 
    }
+    }
+
+    private void SendUserToSearchPostActivity() {
+        Intent SearchPostIntent = new Intent(MainActivity.this,SearchPostActivity.class);
+        startActivity(SearchPostIntent);
     }
 
     private void SendUserToRequestActivity() {

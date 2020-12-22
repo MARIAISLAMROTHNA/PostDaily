@@ -4,26 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".FindFriendsActivity">
+    tools:context=".SearchPostActivity">
 
     <include
         layout="@layout/app_bar_layout"
-        android:id="@+id/find_friends_toolbar"
+        android:id="@+id/searchPostToolbar"
 
         >
     </include>
 
     <RelativeLayout
-        android:id="@+id/myLayout"
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/find_friends_toolbar"
+        android:layout_below="@+id/searchPostToolbar"
         android:layout_marginTop="15dp"
         >
 
-
         <EditText
-            android:id="@+id/search_box_input"
+            android:id="@+id/search_post_input"
             android:layout_width="273dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -32,28 +31,29 @@
             android:layout_marginTop="7dp"
             android:background="@drawable/inputs"
             android:ems="10"
-            android:hint="Search friend here..."
+            android:hint="Search post here..."
             android:inputType="textMultiLine|textCapWords"
             android:padding="10dp"
             android:textColorHint="@color/textColor" />
 
         <ImageButton
-            android:id="@+id/search_people_button"
+            android:id="@+id/search_post_button"
             android:layout_width="56dp"
             android:layout_height="38dp"
             android:layout_marginStart="9dp"
             android:layout_marginTop="7dp"
-            android:layout_toEndOf="@+id/search_box_input"
-            android:background="@drawable/inputs"
+            android:layout_toEndOf="@+id/search_post_input"
             android:scaleType="centerInside"
+            android:background="@drawable/inputs"
             android:src="@drawable/search" />
     </RelativeLayout>
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/search_friend_list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_alignParentStart="true"
-    android:layout_below="@+id/myLayout"
-    android:layout_marginTop="10dp">
-</androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_post_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="7dp"></androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

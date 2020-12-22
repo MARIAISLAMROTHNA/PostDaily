@@ -6,90 +6,101 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="@color/background"
 tools:context=".ClickPostActivity">
+
     <include
         android:id="@+id/click_post_toolbar"
         layout="@layout/app_bar_layout">
 
     </include>
 
-    <ImageView
-        android:id="@+id/click_post_image"
-        android:layout_below="@+id/click_post_toolbar"
-        android:layout_width="402dp"
-        android:layout_height="278dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/select_image" />
-
-    <EditText
-        android:id="@+id/click_post_description"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/click_post_image"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/post_border"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:padding="8dp"
-        android:overScrollMode="always"
-        android:text="Post description"
-        android:textColor="@color/textColor"
-        android:textSize="16sp" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/click_post_toolbar">
 
-    <Button
-        android:id="@+id/edit_post_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/delete_post_button"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="19dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/button"
-        android:text="Edit Post"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/delete_post_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="19dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/button"
-        android:text="Delete Post"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        tools:text="Delete Post" />
+            <ImageView
+                android:id="@+id/click_post_image"
+                android:layout_width="402dp"
+                android:layout_height="278dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/select_image" />
 
-    <ImageButton
-        android:id="@+id/listen_post_button"
-        android:layout_width="68dp"
-        android:layout_height="56dp"
-        android:layout_below="@+id/click_post_image"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="-5dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/button"
-        android:scaleType="centerInside"
-        android:src="@drawable/listen"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:text="listen Post" />
+            <EditText
+                android:id="@+id/click_post_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/click_post_image"
+                android:focusable="false"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/post_border"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:padding="8dp"
+                android:text="Post description"
+                android:textColor="@color/textColor"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/edit_post_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/click_post_description"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="19dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/button"
+                android:text="Edit Post"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/delete_post_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edit_post_button"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="19dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/button"
+                android:text="Delete Post"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Delete Post" />
+
+            <ImageButton
+                android:id="@+id/listen_post_button"
+                android:layout_width="68dp"
+                android:layout_height="56dp"
+                android:layout_below="@+id/click_post_image"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="-5dp"
+                android:layout_marginEnd="17dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button"
+                android:scaleType="centerInside"
+                android:src="@drawable/listen"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="listen Post" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

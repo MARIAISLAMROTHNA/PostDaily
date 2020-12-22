@@ -66,9 +66,10 @@ private Toolbar mToolbar;
         ListenPostButton=(ImageButton)findViewById(R.id.listen_post_button);
 
         DeletePostButton=(Button)findViewById(R.id.delete_post_button);
-
+        PostDes.setCursorVisible(false);
         DeletePostButton.setVisibility(View.INVISIBLE);
         EditPostButton.setVisibility(View.INVISIBLE);
+
         textToSpeech=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -88,8 +89,10 @@ private Toolbar mToolbar;
                      databaseUserid=snapshot.child("uid").getValue().toString();
                      PostDes.setText(description);
                      Picasso.get().load(image).into(PostImg);
+
                      if(CurrentUserid.equals(databaseUserid))
                      {
+                         PostDes.setFocusable(true);
                          DeletePostButton.setVisibility(View.VISIBLE);
                          EditPostButton.setVisibility(View.VISIBLE);
 
