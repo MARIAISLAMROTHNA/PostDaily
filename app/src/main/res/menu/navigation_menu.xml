@@ -21,6 +21,16 @@
         android:icon="@drawable/profile_icon"
         />
     <item
+        android:id="@+id/nav_friends"
+        android:title="Friends"
+        android:icon="@drawable/friends"
+        />
+    <item
+        android:id="@+id/nav_all_user"
+        android:title="All Users"
+        android:icon="@drawable/all_user"
+        />
+    <item
         android:id="@+id/nav_find_friends"
         android:title="Find Friends"
         android:icon="@drawable/find_people"/>
@@ -31,11 +41,6 @@
         android:icon="@drawable/friend_req"
         />
 
-    <item
-    android:id="@+id/nav_friends"
-    android:title="Friends"
-        android:icon="@drawable/friends"
-        />
 
     <item
         android:id="@+id/nav_theme"

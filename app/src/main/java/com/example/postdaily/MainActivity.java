@@ -278,6 +278,9 @@ public class MainActivity extends AppCompatActivity {
            SendUserToFriendsActivity();
            Toast.makeText(MainActivity.this,"FriendsChecked",Toast.LENGTH_LONG).show();
            break;
+       case R.id.nav_all_user:
+           SendUserToAllUsersActivity();
+           break;
        case R.id.nav_find_friends:
           SendUserToFindFriendsActivity();
            break;
@@ -305,6 +308,11 @@ public class MainActivity extends AppCompatActivity {
 
 
    }
+    }
+
+    private void SendUserToAllUsersActivity() {
+        Intent AllUsersIntent = new Intent(MainActivity.this,AllUsersActivity.class);
+        startActivity(AllUsersIntent);
     }
 
     private void SendUserToSearchPostActivity() {
