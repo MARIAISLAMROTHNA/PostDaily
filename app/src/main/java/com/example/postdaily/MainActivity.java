@@ -290,7 +290,6 @@ public class MainActivity extends AppCompatActivity {
            break;
        case R.id.nav_password:
            SendUserToPasswordSettingsActivity();
-           Toast.makeText(MainActivity.this,"FriendsChecked",Toast.LENGTH_LONG).show();
            break;
        case R.id.nav_req:
            SendUserToRequestActivity();
